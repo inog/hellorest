@@ -14,7 +14,11 @@ public class UserController {
         return "getUser was called with page = " + page + " limtt = " + limit + " sort = " + sort;
     }
 
-    @GetMapping(path = "/{userId}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(path = "/{userId}",
+            produces = {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+            })
     public UserRest getUser(@PathVariable String userId) {
         UserRest user = UserRest.builder()
                 .firstName("Ingo")
