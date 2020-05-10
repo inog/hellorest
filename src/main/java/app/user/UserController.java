@@ -1,6 +1,8 @@
 package app.user;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,14 +21,14 @@ public class UserController {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_JSON_VALUE
             })
-    public UserRest getUser(@PathVariable String userId) {
+    public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
         UserRest user = UserRest.builder()
                 .firstName("Ingo")
                 .lastName("Test")
                 .email("test@test.de")
                 .userId("007")
                 .build();
-        return user;
+        return new ResponseEntity<UserRest>(user, HttpStatus.OK);
     }
 
     @PostMapping
