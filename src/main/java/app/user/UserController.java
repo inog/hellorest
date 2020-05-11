@@ -31,14 +31,26 @@ public class UserController {
         return new ResponseEntity<UserRest>(user, HttpStatus.OK);
     }
 
-    @PostMapping
-    public String createUser() {
-        return "createUser was called";
-    }
-
     @PutMapping
     public String updateUser() {
         return "updateUser was called";
+    }
+
+    @PostMapping(consumes = {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+    }, produces = {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+    }
+    )
+    public ResponseEntity<UserRest> createUser(@RequestBody UserDetailsRequestModel userDetails) {
+        UserRest returnValue = UserRest.builder()
+                .email(userDetails.getEmail())
+                .firstName(userDetails.getFirstName())
+                .lastName(userDetails.getLastName())
+                .build();
+        return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{userId}")
