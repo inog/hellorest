@@ -50,7 +50,7 @@ public class UserController {
                 .firstName(userDetails.getFirstName())
                 .lastName(userDetails.getLastName())
                 .build();
-        return new ResponseEntity<UserRest>(returnValue, HttpStatus.OK);
+        return new ResponseEntity<>(returnValue, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{userId}")
