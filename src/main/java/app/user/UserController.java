@@ -16,10 +16,15 @@ public class UserController {
         return "getUser was called with page = " + page + " limit = " + limit + " sort = " + sort;
     }
 
+    @PutMapping
+    public String updateUser() {
+        return "updateUser was called";
+    }
+
     @GetMapping(path = "/{userId}",
             produces = {
-            MediaType.APPLICATION_XML_VALUE,
-            MediaType.APPLICATION_JSON_VALUE
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_JSON_VALUE
             })
     public ResponseEntity<UserRest> getUser(@PathVariable String userId) {
         UserRest user = UserRest.builder()
@@ -29,11 +34,6 @@ public class UserController {
                 .userId("007")
                 .build();
         return new ResponseEntity<UserRest>(user, HttpStatus.OK);
-    }
-
-    @PutMapping
-    public String updateUser() {
-        return "updateUser was called";
     }
 
     @PostMapping(consumes = {
