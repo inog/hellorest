@@ -10,6 +10,5 @@ SpringBoot Rest und JPA
 
 [tasks](tasks.md)
 
-
-
-
+Tutorials:
+https://spring.io/guides/gs/accessing-data-jpa/#scratch
